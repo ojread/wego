@@ -1,0 +1,44 @@
+<template name="gameIndex">
+    {{#if currentUser}}
+        <p>List your games in progress and completed.</p>
+
+        <p><a href="{{pathFor 'game.create'}}">Start new game</a></p>
+
+        {{> gameList}}
+    {{else}}
+        <p>Please sign in</p>
+    {{/if}}
+</template>
+
+<template name="gameList">
+    <h2>Current games</h2>
+    <ul>
+        {{#each currentGames}}
+            {{> gameListItem}}
+        {{/each}}
+    </ul>
+
+    <h2>Completed games</h2>
+    <ul>
+        {{#each completedGames}}
+            {{> gameListItem}}
+        {{/each}}
+    </ul>
+</template>
+
+<template name="gameListItem">
+    <li>
+        <a href="{{pathFor 'game.single' gameId=_id}}">
+            RPS -
+            {{#each playerIds}}
+                {{username this}}
+            {{/each}}
+            {{#if complete}}
+                Winner:
+                {{#each winnerIds}}
+                    {{username this}}
+                {{/each}}
+            {{/if}}
+        </a>
+    </li>
+</template>

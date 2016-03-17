@@ -1,0 +1,59 @@
+<template name="gameSingle">
+
+    {{> rps game=game turn=turn}}
+
+    <!-- <p>View a game in progress or results if finished.</p> -->
+
+    <!-- Overall game settings. -->
+    <!-- {{#with game}}
+    {{/with}} -->
+
+    <!-- Display the current state. -->
+    <!-- {{#with turn.state}}
+        <div class="row">
+            <div class="col-sm-9">
+                {{> gameTable}}
+                {{> gameHand}}
+            </div>
+            <div class="col-sm-3">
+                {{> gamePlayers}}
+            </div>
+        </div>
+    {{/with}} -->
+</template>
+
+<template name="gameTable">
+    <h2>Table</h2>
+    <div class="table">
+        {{#each table}}
+            <div class="card noselect">{{this}}</div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="gameHand">
+    {{#with currentPlayer}}
+        <h2>Your hand</h2>
+        <p>These could be customised radio buttons...</p>
+        <div class="hand">
+            {{#each hand}}
+                <div class="card noselect">{{this}}</div>
+            {{/each}}
+        </div>
+        <button id="submitTurn" class="btn btn-primary">Submit</button>
+    {{/with}}
+</template>
+
+<template name="gamePlayers">
+    <h2>Players</h2>
+    {{#each players}}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{username}}</h3>
+            </div>
+            <div class="panel-body">
+                Score
+            </div>
+        </div>
+    {{/each}}
+</template>

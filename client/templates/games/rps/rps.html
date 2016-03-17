@@ -1,0 +1,94 @@
+<template name="rps">
+    {{#if game.complete}}
+
+        <div class="alert alert-success">
+            Game over - {{#each game.winnerIds}}{{username this}}{{/each}} won.
+        </div>
+
+        {{#with turn}}
+            {{> rpsPlayerList}}
+        {{/with}}
+
+    {{else}}
+
+        {{#with turn}}
+            <div class="row">
+                <div class="col-sm-8">
+                    {{> rpsActionForm}}
+                </div>
+                <div class="col-sm-4">
+                    {{> rpsPlayerList}}
+                </div>
+            </div>
+        {{/with}}
+
+    {{/if}}
+</template>
+
+<template name="rpsPlayerList">
+    {{#each state.players}}
+        {{> rpsPlayerListItem}}
+    {{/each}}
+</template>
+
+<template name="rpsPlayerListItem">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{user.username}}</h3>
+        </div>
+        <div class="panel-body">
+            <p>Hands: {{prevActions}}</p>
+            <p>Score: {{score}}</p>
+        </div>
+    </div>
+</template>
+
+<template name="rpsActionForm">
+    <form class="rpsActions">
+
+        <p>Round {{turnNumber}}</p>
+        <p>Choose a hand and press submit:</p>
+
+        <p>
+
+        <!-- <div class="row"> -->
+
+            <!-- <div class="col-sm-4"> -->
+                <input id="rpsActionRock" type="radio" name="action" value="rock">
+                <label for="rpsActionRock" title="Rock">
+                    <span class="fa-stack fa-5x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-hand-rock-o fa-stack-1x fa-inverse"></i>
+                    </span>
+                </label>
+            <!-- </div> -->
+
+            <!-- <div class="col-sm-4"> -->
+                <input id="rpsActionPaper" type="radio" name="action" value="paper">
+                <label for="rpsActionPaper" title="Paper">
+                    <span class="fa-stack fa-5x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-hand-paper-o fa-stack-1x fa-inverse"></i>
+                    </span>
+                </label>
+            <!-- </div> -->
+
+            <!-- <div class="col-sm-4"> -->
+                <input id="rpsActionScissors" type="radio" name="action" value="scissors">
+                <label for="rpsActionScissors" title="Scissors">
+                    <span class="fa-stack fa-5x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-hand-scissors-o fa-stack-1x fa-inverse"></i>
+                    </span>
+                </label>
+            <!-- </div> -->
+
+        <!-- </div> -->
+
+        </p>
+
+        <p>
+            <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+        </p>
+    </form>
+</template>

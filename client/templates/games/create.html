@@ -1,0 +1,5 @@
+<template name="gameCreate">
+    <p>Choose the players that you want to start a game with.</p>
+
+    {{> quickForm collection="App.collections.games" id="createGameForm" type="method" meteormethod="createGame" fields="playerIds"}}
+</template>
